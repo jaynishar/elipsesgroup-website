@@ -1,0 +1,200 @@
+{
+  "services": [
+    {
+      "id": "keiyan-mep",
+      "brand": "KEIYAN MEP",
+      "title": "Mechanical, Electrical & Plumbing (MEP)",
+      "subtitle": "Contracting & Engineering Services",
+      "description": "Comprehensive engineering and installation solutions for corporate commercial interiors. We design and deploy high-performance HVAC, electrical grids, advanced firefighting, and plumbing systems tailored to large-scale offices.",
+      "features": [
+        "HVAC & Air Conditioning systems design and installation (VRF/VAV)",
+        "High-tension & Low-tension electrical installations",
+        "Public health engineering & plumbing networks",
+        "Integrated fire detection & fire fighting infrastructure"
+      ]
+    },
+    {
+      "id": "frontier-furniture",
+      "brand": "FRONTIER FURNITURE",
+      "title": "Build & Modular Furniture Solutions",
+      "subtitle": "High-Quality Modular Systems",
+      "description": "State-of-the-art office furniture designed for modern, agile workspaces. From desking systems and storage solutions to customized acoustic screens and planters, we manufacture components that balance visual aesthetics with physical durability.",
+      "features": [
+        "Modular desking and ergonomic workstations",
+        "Steel, laminate, and electronic lockers",
+        "Acoustic screens and modular wall partitions",
+        "Meeting room tables and collaborative hot-desks"
+      ]
+    },
+    {
+      "id": "touch-wood",
+      "brand": "TOUCH WOOD",
+      "title": "Design Consultancy Studio",
+      "subtitle": "Workspace Architecture & Planning",
+      "description": "Bespoke corporate interior planning, space optimization, and structural consultancy. We map out workflows, employee behavior, and branding requirements to design workspaces that foster creativity, collaboration, and high productivity.",
+      "features": [
+        "Corporate space planning and 2D/3D layout design",
+        "Bespoke brand-aligned interior architecture",
+        "Material boards, lighting design, and acoustic planning",
+        "Turnkey project management & construction oversight"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj-ky-1",
+      "title": "RBL Bank Head Office",
+      "brand": "KEIYAN MEP",
+      "category": "MEP Infrastructure",
+      "description": "Awarded as a turnkey design and build MEP infrastructure project spanning 2 floors and 18,000 sqft, utilizing advanced VRV HVAC climate grids and intelligent electrical panels.",
+      "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800",
+      "client": "RBL Bank",
+      "location": "Delhi NCR, India",
+      "year": "2025"
+    },
+    {
+      "id": "proj-ky-2",
+      "title": "Standard Chartered Bank Hubs",
+      "brand": "KEIYAN MEP",
+      "category": "MEP Infrastructure",
+      "description": "Design and build mechanical and electrical infrastructure overhaul across multiple floors and branch locations ranging from 5,000 to 15,000 sqft.",
+      "image": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800",
+      "client": "Standard Chartered Bank",
+      "location": "Delhi NCR, India",
+      "year": "2025"
+    },
+    {
+      "id": "proj-ky-3",
+      "title": "DBS Bank Corporate Center",
+      "brand": "KEIYAN MEP",
+      "category": "MEP Infrastructure",
+      "description": "Integrated public health, plumbing, and fire fighting network setup alongside high-efficiency VRF conditioning spanning 2 floors (18,000 sqft).",
+      "image": "https://images.unsplash.com/photo-1581094288338-2314dddb7ecc?auto=format&fit=crop&q=80&w=800",
+      "client": "DBS - Development Bank of Singapore",
+      "location": "Delhi NCR, India",
+      "year": "2024"
+    },
+    {
+      "id": "proj-ff-1",
+      "title": "SBI Life Corporate Spaces",
+      "brand": "FRONTIER FURNITURE",
+      "category": "Modular Furniture",
+      "description": "Outfitting multi-city workspace locations across India with modular linear workstations, custom desking systems, and storage cabinets.",
+      "image": "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=800",
+      "client": "SBI Life",
+      "location": "Pan India",
+      "year": "2025"
+    },
+    {
+      "id": "proj-ff-2",
+      "title": "HDFC Currency Chest",
+      "brand": "FRONTIER FURNITURE",
+      "category": "Modular Furniture",
+      "description": "High-security modular layout outfitting with industrial-grade steel and electronic lockers, laminated cabinets, and durable hot-desking tables.",
+      "image": "https://images.unsplash.com/photo-1431540015161-0bf868a2d407?auto=format&fit=crop&q=80&w=800",
+      "client": "HDFC Bank",
+      "location": "Lucknow & Ludhiana, India",
+      "year": "2025"
+    },
+    {
+      "id": "proj-ff-3",
+      "title": "Virchow Office Workspace",
+      "brand": "FRONTIER FURNITURE",
+      "category": "Modular Furniture",
+      "description": "Furnishing of 6,039 sqft workspace layout in Goregaon, Mumbai featuring customizable fabric acoustic screen dividers and ergonomic task chairs.",
+      "image": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=800",
+      "client": "Virchow Laboratories",
+      "location": "Mumbai, India",
+      "year": "2024"
+    },
+    {
+      "id": "proj-ff-4",
+      "title": "HDFC Chennai Porur Center",
+      "brand": "FRONTIER FURNITURE",
+      "category": "Modular Furniture",
+      "description": "Large-scale layout execution encompassing 251,100 sqft of commercial space, equipped with custom power-integrated linear workspace systems.",
+      "image": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=800",
+      "client": "HDFC Bank",
+      "location": "Chennai, India",
+      "year": "2024"
+    },
+    {
+      "id": "proj-ff-5",
+      "title": "Sajjan India Corporate Office",
+      "brand": "FRONTIER FURNITURE",
+      "category": "Modular Furniture",
+      "description": "Installation of space-saving modular desking grids, wall partitions, and planter boxes for a 3,600 sqft office in Lower Parel, Mumbai.",
+      "image": "https://images.unsplash.com/photo-1581094288338-2314dddb7ecc?auto=format&fit=crop&q=80&w=800",
+      "client": "Sajjan India",
+      "location": "Mumbai, India",
+      "year": "2025"
+    },
+    {
+      "id": "proj-tw-1",
+      "title": "Lodha World One PE Fund",
+      "brand": "TOUCH WOOD",
+      "category": "Design Consultancy",
+      "description": "Interior architecture consultancy for a 25-floor Private Equity Fund workspace covering 18,000 sqft. Integrated lighting layouts and warm wood acoustics.",
+      "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800",
+      "client": "Acuity Capital Group",
+      "location": "Lower Parel (Mumbai), India",
+      "year": "2025"
+    },
+    {
+      "id": "proj-tw-2",
+      "title": "Standard Chartered Fort Branch",
+      "brand": "TOUCH WOOD",
+      "category": "Design Consultancy",
+      "description": "Space optimization design concept mapping out employee workflows, custom material palettes, and architectural heritage integration.",
+      "image": "https://images.unsplash.com/photo-1431540015161-0bf868a2d407?auto=format&fit=crop&q=80&w=800",
+      "client": "Standard Chartered",
+      "location": "Fort Mumbai, India",
+      "year": "2024"
+    },
+    {
+      "id": "proj-tw-3",
+      "title": "City Union Bank Headquarters",
+      "brand": "TOUCH WOOD",
+      "category": "Design Consultancy",
+      "description": "Detailed design roadmap, FF&E specifications, and space zoning guidelines for the regional administrative center.",
+      "image": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=800",
+      "client": "City Union Bank Ltd",
+      "location": "Kumbakonam, India",
+      "year": "2024"
+    }
+  ],
+  "blogs": [
+    {
+      "id": "blog-1",
+      "title": "The Evolution of Commercial Interiors Post-2025",
+      "category": "Trends",
+      "excerpt": "Discover how workspace layout needs are shifting towards activity-based designs, merging safety, wellness, and modular tech.",
+      "content": "In recent years, the concept of a corporate office has undergone a major transition. Workspaces are no longer just rows of desks; they are collaborative ecosystems. In this article, we look at why modular desking and acoustic partitioning have become critical tools for modern HR managers. Businesses are discovering that giving employees control over their physical environments increases performance and job satisfaction. We also explore the integration of biophilic elements, such as planter boxes, inside corporate layouts to improve indoor air quality and reduce office stress.",
+      "image": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=800",
+      "date": "2026-06-15",
+      "author": "Ellipsis Design Team"
+    },
+    {
+      "id": "blog-2",
+      "title": "Understanding MEP: The Backbone of Office Operations",
+      "category": "Engineering",
+      "excerpt": "MEP engineering is often invisible, but it makes or breaks the workspace. Here is a breakdown of why HVAC and electrical infrastructure matter.",
+      "content": "When evaluating office interiors, most people look at furniture, color schemes, and wall art. However, the true functionality of a space lies in its Mechanical, Electrical, and Plumbing (MEP) planning. A poorly ventilated office leads to fatigue, while inadequate electrical grids can halt daily work. In this post, we explain how Keiyan MEP design-build services integrate early in the architectural process to plan efficient layouts, reduce energy bills by up to 30%, and ensure standard-compliant fire safety networks.",
+      "image": "https://images.unsplash.com/photo-1581094288338-2314dddb7ecc?auto=format&fit=crop&q=80&w=800",
+      "date": "2026-07-02",
+      "author": "HVAC Specialist Team"
+    }
+  ],
+  "inquiries": [
+    {
+      "id": "inq-1",
+      "name": "Rohan Sharma",
+      "email": "rohan@techcorp.in",
+      "subject": "Office Fit-out & Modular Desking Quotation",
+      "message": "Hello, we are expanding our office in Bangalore and require a quotation for 120 modular workstations and meeting room furniture. We also need MEP planning for our server rooms.",
+      "type": "General Inquiry",
+      "date": "2026-07-17T18:30:00.000Z",
+      "status": "New"
+    }
+  ]
+}
