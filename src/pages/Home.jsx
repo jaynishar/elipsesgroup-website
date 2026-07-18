@@ -250,23 +250,36 @@ export default function Home({ projects, blogs, services, setView }) {
     }
   };
 
+  const handleImageError = (e, fallbackType = 'furniture') => {
+    e.target.onerror = null; // Prevent infinite loop fallback
+    if (fallbackType === 'mep') {
+      e.target.src = mepCeilingImg;
+    } else if (fallbackType === 'design') {
+      e.target.src = touchWoodMaterialsImg;
+    } else {
+      e.target.src = modularFurnitureImg;
+    }
+  };
+
   return (
-    <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', position: 'relative' }}>
+    <div style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh', position: 'relative' }}>
       
       {/* 1. HERO SHOWCASE (typographic and bold, BIG.dk style) */}
       <section style={{ padding: '80px 5vw 40px 5vw', display: 'flex', flexDirection: 'column', gap: '30px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '30px' }}>
           <div>
-            <h1 style={{ fontSize: 'calc(3.5rem + 3.5vw)', letterSpacing: '-0.04em', color: '#000000', margin: 0, fontWeight: '900' }}>
-              ELLIPSIS GROUP
-            </h1>
-            <p className="mono-text" style={{ color: '#888888', marginTop: '10px', textTransform: 'uppercase', letterSpacing: '0.15em' }}>
+            <div className="reveal-container">
+              <h1 className="expensive-reveal" style={{ fontSize: 'calc(2.5rem + 2.5vw)', letterSpacing: '-0.04em', color: 'var(--text-primary)', margin: 0, fontWeight: '900' }}>
+                ELLIPSIS GROUP
+              </h1>
+            </div>
+            <p className="mono-text" style={{ color: 'var(--text-muted)', marginTop: '10px', textTransform: 'uppercase', letterSpacing: '0.15em' }}>
               Workspace Architecture // Advanced MEP Engineering // Modular Furniture Fabrication
             </p>
           </div>
 
           <div style={{ maxWidth: '400px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
-            <p style={{ fontSize: '14px', color: '#555555', lineHeight: '1.6' }}>
+            <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
               We transform corporate shells into living, productive environments by integrating design planning, infrastructure engineering, and local manufacturing under a single contract.
             </p>
             <button 
@@ -284,27 +297,28 @@ export default function Home({ projects, blogs, services, setView }) {
         <div 
           style={{ 
             width: '100%', 
-            height: '42vh', 
+            aspectRatio: '21/9', 
             overflow: 'hidden', 
-            border: '1px solid #000000',
+            border: '1px solid var(--border-light)',
             position: 'relative'
           }}
         >
           <img 
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1600" 
             alt="Corporate head office entry" 
+            className="ken-burns"
+            onError={(e) => handleImageError(e, 'design')}
             style={{ 
               width: '100%', 
               height: '100%', 
               objectFit: 'cover',
-              filter: 'grayscale(100%) contrast(110%)',
               transition: 'transform 10s ease-out'
             }}
             ref={(img) => {
               if (img) setTimeout(() => img.style.transform = 'scale(1.08)', 100);
             }}
           />
-          <div style={{ position: 'absolute', bottom: '20px', left: '20px', backgroundColor: '#ffffff', border: '1px solid #000', padding: '10px 20px' }}>
+          <div style={{ position: 'absolute', bottom: '20px', left: '20px', backgroundColor: 'var(--bg-primary)', border: '1px solid var(--border-light)', padding: '10px 20px' }}>
             <span className="mono-text" style={{ fontSize: '11px', fontWeight: '700' }}>00 // CONTINUOUS WORKSPACE INTEGRATION</span>
           </div>
         </div>
@@ -315,9 +329,9 @@ export default function Home({ projects, blogs, services, setView }) {
         style={{
           position: 'sticky',
           top: '80px',
-          backgroundColor: '#ffffff',
-          borderBottom: '1px solid #000000',
-          borderTop: '1px solid #000000',
+          backgroundColor: 'var(--bg-primary)',
+          borderBottom: '1px solid var(--border-light)',
+          borderTop: '1px solid var(--border-light)',
           zIndex: 90,
           padding: '10px 5vw',
           display: 'flex',
@@ -327,7 +341,7 @@ export default function Home({ projects, blogs, services, setView }) {
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '15px' }}>
           {/* Main Brand filters */}
-          <div style={{ display: 'flex', gap: '2px', backgroundColor: '#000000', padding: '1px' }}>
+          <div style={{ display: 'flex', gap: '2px', backgroundColor: 'var(--border-light)', padding: '1px' }}>
             {['ALL', 'KEIYAN MEP', 'FRONTIER FURNITURE', 'TOUCH WOOD'].map(brand => (
               <button
                 key={brand}
@@ -344,8 +358,8 @@ export default function Home({ projects, blogs, services, setView }) {
                   letterSpacing: '0.05em',
                   cursor: 'pointer',
                   border: 'none',
-                  backgroundColor: activeBrand === brand ? '#ffffff' : '#000000',
-                  color: activeBrand === brand ? '#000000' : '#ffffff',
+                  backgroundColor: activeBrand === brand ? 'var(--text-primary)' : 'var(--bg-secondary)',
+                  color: activeBrand === brand ? 'var(--bg-primary)' : 'var(--text-primary)',
                   transition: 'var(--transition-fast)'
                 }}
               >
@@ -354,7 +368,7 @@ export default function Home({ projects, blogs, services, setView }) {
             ))}
           </div>
 
-          <span className="mono-text" style={{ fontSize: '11px', color: '#888888', textTransform: 'uppercase' }}>
+          <span className="mono-text" style={{ fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
             FILTERING: <strong>{filteredProjects.length}</strong> PROJECTS SHOWN
           </span>
         </div>
@@ -383,9 +397,9 @@ export default function Home({ projects, blogs, services, setView }) {
                   fontWeight: '700',
                   cursor: 'pointer',
                   borderRadius: '0',
-                  border: '1px solid #000000',
-                  backgroundColor: activeSub === sub ? '#000000' : '#ffffff',
-                  color: activeSub === sub ? '#ffffff' : '#000000',
+                  border: '1px solid var(--border-light)',
+                  backgroundColor: activeSub === sub ? 'var(--text-primary)' : 'var(--bg-secondary)',
+                  color: activeSub === sub ? 'var(--bg-primary)' : 'var(--text-primary)',
                   whiteSpace: 'nowrap'
                 }}
               >
@@ -402,17 +416,17 @@ export default function Home({ projects, blogs, services, setView }) {
           className="animate-fade-in-up"
           style={{ 
             padding: '60px 5vw 20px 5vw',
-            borderBottom: '1px solid #e0e0e0',
-            backgroundColor: '#fafafa'
+            borderBottom: '1px solid var(--border-light)',
+            backgroundColor: 'var(--bg-secondary)'
           }}
         >
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '40px', alignItems: 'start' }} className="brand-layout-grid">
             <div>
-              <span className="mono-text" style={{ color: '#888888', display: 'block', marginBottom: '10px' }}>DIVISION OVERVIEW</span>
-              <h2 style={{ fontSize: '32px', fontWeight: '900', color: '#000000' }}>
+              <span className="mono-text" style={{ color: 'var(--accent-bronze)', display: 'block', marginBottom: '10px', fontWeight: '700' }}>DIVISION OVERVIEW</span>
+              <h2 style={{ fontSize: '32px', fontWeight: '900', color: 'var(--text-primary)' }}>
                 {brandDetails[activeBrand].title}
               </h2>
-              <p className="mono-text" style={{ color: '#555555', marginTop: '6px', fontSize: '11px', textTransform: 'uppercase' }}>
+              <p className="mono-text" style={{ color: 'var(--text-secondary)', marginTop: '6px', fontSize: '11px', textTransform: 'uppercase' }}>
                 {brandDetails[activeBrand].subtitle}
               </p>
               
@@ -429,21 +443,21 @@ export default function Home({ projects, blogs, services, setView }) {
             </div>
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
-              <p style={{ fontSize: '16px', lineHeight: '1.7', color: '#333333', fontWeight: '500' }}>
+              <p style={{ fontSize: '16px', lineHeight: '1.7', color: 'var(--text-secondary)', fontWeight: '500' }}>
                 {brandDetails[activeBrand].intro}
               </p>
               
               {/* Mission/Vision/Values Row */}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px', marginTop: '20px' }}>
                 {brandDetails[activeBrand].points.map((pt, i) => (
-                  <div key={i} style={{ borderTop: '1px solid #000000', paddingTop: '15px' }}>
-                    <span className="mono-text" style={{ fontSize: '10px', color: '#888888', display: 'block', marginBottom: '8px' }}>
+                  <div key={i} style={{ borderTop: '1px solid var(--border-color)', paddingTop: '15px' }}>
+                    <span className="mono-text" style={{ fontSize: '10px', color: 'var(--accent-bronze)', display: 'block', marginBottom: '8px', fontWeight: '700' }}>
                       {pt.label}
                     </span>
                     <h4 style={{ fontSize: '14px', fontWeight: '800', marginBottom: '10px' }}>
                       {pt.title}
                     </h4>
-                    <p style={{ fontSize: '12px', color: '#666666', lineHeight: '1.5' }}>
+                    <p style={{ fontSize: '12px', color: 'var(--text-secondary)', lineHeight: '1.5' }}>
                       {pt.desc}
                     </p>
                   </div>
@@ -454,23 +468,24 @@ export default function Home({ projects, blogs, services, setView }) {
 
           {/* Subcategories Catalog Showcase (Stark minimalist grid) */}
           {brandSubCategories[activeBrand] && (
-            <div style={{ marginTop: '60px', borderTop: '1px solid #000000', paddingTop: '40px' }}>
-              <span className="mono-text" style={{ color: '#888888', display: 'block', marginBottom: '24px' }}>PRODUCT REGISTRY & TECHNICAL SPECIFICATIONS</span>
+            <div style={{ marginTop: '60px', borderTop: '1px solid var(--border-light)', paddingTop: '40px' }}>
+              <span className="mono-text" style={{ color: 'var(--accent-bronze)', display: 'block', marginBottom: '24px', letterSpacing: '0.12em', fontWeight: '700' }}>PRODUCT REGISTRY & TECHNICAL SPECIFICATIONS</span>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '30px' }}>
                 {brandSubCategories[activeBrand].map((sub, idx) => (
-                  <div key={idx} style={{ border: '1px solid #000000', display: 'flex', flexDirection: 'column', backgroundColor: '#ffffff' }}>
-                    <div style={{ height: '180px', overflow: 'hidden', borderBottom: '1px solid #000000' }}>
+                  <div key={idx} style={{ border: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--bg-secondary)' }}>
+                    <div style={{ width: '100%', aspectRatio: '16/10', overflow: 'hidden', borderBottom: '1px solid var(--border-light)' }}>
                       <img 
                         src={sub.image} 
                         alt={sub.title} 
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%)', transition: 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }} 
+                        onError={(e) => handleImageError(e, activeBrand === 'KEIYAN MEP' ? 'mep' : activeBrand === 'TOUCH WOOD' ? 'design' : 'furniture')}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }} 
                         onMouseEnter={(e) => e.target.style.transform = 'scale(1.04)'} 
                         onMouseLeave={(e) => e.target.style.transform = 'scale(1)'} 
                       />
                     </div>
                     <div style={{ padding: '24px', flexGrow: 1, display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                      <h4 style={{ fontSize: '15px', fontWeight: '900', color: '#000000' }}>{sub.title}</h4>
-                      <p style={{ fontSize: '12px', color: '#555555', lineHeight: '1.5' }}>{sub.desc}</p>
+                      <h4 style={{ fontSize: '15px', fontWeight: '900', color: 'var(--text-primary)' }}>{sub.title}</h4>
+                      <p style={{ fontSize: '12px', color: 'var(--text-secondary)', lineHeight: '1.5' }}>{sub.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -493,9 +508,8 @@ export default function Home({ projects, blogs, services, setView }) {
       <section ref={projectListRef} style={{ padding: '60px 5vw 120px 5vw' }}>
         
         {filteredProjects.length === 0 ? (
-          <div style={{ padding: '100px 0', textAlign: 'center', border: '1px dashed #000000' }}>
-            <Info size={32} style={{ marginBottom: '16px' }} />
-            <p className="mono-text" style={{ fontSize: '13px', fontWeight: '700' }}>NO PROJECTS MATCHING CRITERIA AVAILABLE IN DATABASE.</p>
+          <div style={{ padding: '100px 0', textAlign: 'center', border: '1px dashed var(--border-light)' }}>
+            <p className="mono-text" style={{ fontSize: '13px', fontWeight: '700' }}>NO PROJECTS RECORDED IN THIS CATEGORY.</p>
           </div>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '60px' }}>
@@ -514,7 +528,7 @@ export default function Home({ projects, blogs, services, setView }) {
                   alignItems: 'flex-start',
                   gap: '40px',
                   cursor: 'pointer',
-                  borderBottom: '1px solid #eaeaea',
+                  borderBottom: '1px solid var(--border-light)',
                   paddingBottom: '50px'
                 }}
               >
@@ -522,9 +536,9 @@ export default function Home({ projects, blogs, services, setView }) {
                 <div 
                   style={{
                     width: '60%',
-                    height: '460px',
+                    aspectRatio: '16/10',
                     overflow: 'hidden',
-                    border: '1px solid #000000',
+                    border: '1px solid var(--border-light)',
                     position: 'relative'
                   }}
                   className="project-image-box"
@@ -532,15 +546,15 @@ export default function Home({ projects, blogs, services, setView }) {
                   <img 
                     src={proj.image} 
                     alt={proj.title}
+                    onError={(e) => handleImageError(e, proj.brand.toUpperCase() === 'KEIYAN MEP' ? 'mep' : proj.brand.toUpperCase() === 'TOUCH WOOD' ? 'design' : 'furniture')}
                     style={{
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
-                      filter: 'grayscale(100%)',
                       transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1)'
                     }}
                   />
-                  <div style={{ position: 'absolute', top: '15px', right: '15px', backgroundColor: '#ffffff', border: '1px solid #000000', padding: '4px 10px' }}>
+                  <div style={{ position: 'absolute', top: '15px', right: '15px', backgroundColor: 'var(--bg-primary)', border: '1px solid var(--border-light)', padding: '4px 10px' }}>
                     <span className="mono-text" style={{ fontSize: '10px', fontWeight: '700' }}>{proj.brand}</span>
                   </div>
                 </div>
@@ -553,19 +567,19 @@ export default function Home({ projects, blogs, services, setView }) {
                   </div>
 
                   <div>
-                    <span className="mono-text" style={{ fontSize: '12px', color: '#888888', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                    <span className="mono-text" style={{ fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                       {proj.category}
                     </span>
-                    <h3 style={{ fontSize: '32px', fontWeight: '900', marginTop: '6px', color: '#000000' }}>
+                    <h3 style={{ fontSize: '32px', fontWeight: '900', marginTop: '6px', color: 'var(--text-primary)' }}>
                       {proj.title}
                     </h3>
                   </div>
 
-                  <p style={{ fontSize: '14px', color: '#555555', lineHeight: '1.6' }}>
+                  <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
                     {proj.description.substring(0, 160) + '...'}
                   </p>
 
-                  <div style={{ borderTop: '1px solid #000000', paddingTop: '15px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <div style={{ borderTop: '1px solid var(--border-color)', paddingTop: '15px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px' }}>
                       <MapPin size={12} />
                       <span className="mono-text">{proj.location}</span>
@@ -600,7 +614,7 @@ export default function Home({ projects, blogs, services, setView }) {
           }}
         >
           {/* Header Controls */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #000000', paddingBottom: '20px', marginBottom: '40px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border-light)', paddingBottom: '20px', marginBottom: '40px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
               <div style={{ width: '28px', height: '28px', overflow: 'hidden' }}>
                 {renderProjectIcon(selectedProject.brand)}
@@ -613,7 +627,8 @@ export default function Home({ projects, blogs, services, setView }) {
               className="interactive"
               style={{
                 backgroundColor: 'transparent',
-                border: '1px solid #000000',
+                border: '1px solid var(--border-color)',
+                color: 'var(--text-primary)',
                 padding: '10px 24px',
                 fontFamily: 'var(--font-display)',
                 fontWeight: '700',
@@ -628,59 +643,60 @@ export default function Home({ projects, blogs, services, setView }) {
           {/* Grid Layout of details */}
           <div style={{ display: 'grid', gridTemplateColumns: '7fr 5fr', gap: '60px' }} className="detail-layout-grid">
             <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
-              <div style={{ border: '1px solid #000000', overflow: 'hidden' }}>
+              <div style={{ border: '1px solid var(--border-light)', overflow: 'hidden' }}>
                 <img 
                   src={selectedProject.image} 
                   alt={selectedProject.title} 
-                  style={{ width: '100%', objectFit: 'cover', display: 'block', maxHeight: '550px' }}
+                  onError={(e) => handleImageError(e, selectedProject.brand.toUpperCase() === 'KEIYAN MEP' ? 'mep' : selectedProject.brand.toUpperCase() === 'TOUCH WOOD' ? 'design' : 'furniture')}
+                  style={{ width: '100%', objectFit: 'cover', display: 'block', aspectRatio: '16/10' }}
                 />
               </div>
 
               {/* Extra dummy photos (simulated gallery representing detailed drawings) */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-                <div style={{ border: '1px solid #000000', height: '220px', overflow: 'hidden' }}>
-                  <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=400" alt="Technical blueprint sketch" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%)' }} />
+                <div style={{ border: '1px solid var(--border-light)', aspectRatio: '1.5', overflow: 'hidden' }}>
+                  <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=400" alt="Technical blueprint sketch" onError={(e) => handleImageError(e, 'mep')} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
-                <div style={{ border: '1px solid #000000', height: '220px', overflow: 'hidden' }}>
-                  <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ecc?auto=format&fit=crop&q=80&w=400" alt="Completed installation layout details" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%)' }} />
+                <div style={{ border: '1px solid var(--border-light)', aspectRatio: '1.5', overflow: 'hidden' }}>
+                  <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ecc?auto=format&fit=crop&q=80&w=400" alt="Completed installation layout details" onError={(e) => handleImageError(e, 'furniture')} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
               </div>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
               <div>
-                <span className="mono-text" style={{ color: '#888888', fontSize: '11px', textTransform: 'uppercase' }}>CASE STUDY // CLIENT FILE</span>
-                <h1 style={{ fontSize: '48px', fontWeight: '900', color: '#000000', marginTop: '10px' }}>
+                <span className="mono-text" style={{ color: 'var(--text-muted)', fontSize: '11px', textTransform: 'uppercase' }}>CASE STUDY // CLIENT FILE</span>
+                <h1 style={{ fontSize: '48px', fontWeight: '900', color: 'var(--text-primary)', marginTop: '10px' }}>
                   {selectedProject.title}
                 </h1>
               </div>
 
-              <p style={{ fontSize: '15px', color: '#333333', lineHeight: '1.7' }}>
+              <p style={{ fontSize: '15px', color: 'var(--text-secondary)', lineHeight: '1.7' }}>
                 {selectedProject.description}
               </p>
 
               {/* Technical Spec sheet */}
-              <div style={{ border: '1px solid #000000', padding: '24px' }}>
-                <h4 style={{ fontSize: '12px', fontWeight: '800', letterSpacing: '0.05em', borderBottom: '1px solid #000000', paddingBottom: '10px', marginBottom: '16px' }}>
+              <div style={{ border: '1px solid var(--border-light)', padding: '24px' }}>
+                <h4 style={{ fontSize: '12px', fontWeight: '800', letterSpacing: '0.05em', borderBottom: '1px solid var(--border-light)', paddingBottom: '10px', marginBottom: '16px' }}>
                   PROJECT SPECIFICATIONS
                 </h4>
                 
                 <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                   <tbody>
-                    <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
-                      <td className="mono-text" style={{ padding: '8px 0', color: '#888888' }}>CLIENT:</td>
+                    <tr style={{ borderBottom: '1px solid var(--border-light)' }}>
+                      <td className="mono-text" style={{ padding: '8px 0', color: 'var(--text-muted)' }}>CLIENT:</td>
                       <td className="mono-text" style={{ padding: '8px 0', textAlign: 'right', fontWeight: '700' }}>{selectedProject.client}</td>
                     </tr>
-                    <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
-                      <td className="mono-text" style={{ padding: '8px 0', color: '#888888' }}>LOCATION:</td>
+                    <tr style={{ borderBottom: '1px solid var(--border-light)' }}>
+                      <td className="mono-text" style={{ padding: '8px 0', color: 'var(--text-muted)' }}>LOCATION:</td>
                       <td className="mono-text" style={{ padding: '8px 0', textAlign: 'right', fontWeight: '700' }}>{selectedProject.location}</td>
                     </tr>
-                    <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
-                      <td className="mono-text" style={{ padding: '8px 0', color: '#888888' }}>YEAR:</td>
+                    <tr style={{ borderBottom: '1px solid var(--border-light)' }}>
+                      <td className="mono-text" style={{ padding: '8px 0', color: 'var(--text-muted)' }}>YEAR:</td>
                       <td className="mono-text" style={{ padding: '8px 0', textAlign: 'right', fontWeight: '700' }}>{selectedProject.year}</td>
                     </tr>
                     <tr>
-                      <td className="mono-text" style={{ padding: '8px 0', color: '#888888' }}>CONTRACT:</td>
+                      <td className="mono-text" style={{ padding: '8px 0', color: 'var(--text-muted)' }}>CONTRACT:</td>
                       <td className="mono-text" style={{ padding: '8px 0', textAlign: 'right', fontWeight: '700' }}>DESIGN-BUILD INTEGRATION</td>
                     </tr>
                   </tbody>
@@ -689,7 +705,7 @@ export default function Home({ projects, blogs, services, setView }) {
 
               {/* Lead captures */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                <p className="mono-text" style={{ fontSize: '11px', color: '#888888' }}>* Interested in deploying a similar architectural space configuration for your corporate organization?</p>
+                <p className="mono-text" style={{ fontSize: '11px', color: 'var(--text-muted)' }}>* Interested in deploying a similar architectural space configuration for your corporate organization?</p>
                 <button
                   onClick={() => {
                     setLeadForm({ ...leadForm, brand: selectedProject.brand, message: `Inquiring about configuration styled similarly to project: ${selectedProject.title}` });
@@ -713,7 +729,7 @@ export default function Home({ projects, blogs, services, setView }) {
               }
             }
             .project-image-box:hover img {
-              filter: grayscale(0%) !important;
+              transform: scale(1.04);
             }
             @media (max-width: 768px) {
               .project-image-box {
@@ -753,8 +769,8 @@ export default function Home({ projects, blogs, services, setView }) {
         >
           <div 
             style={{
-              backgroundColor: '#ffffff',
-              border: '2px solid #000000',
+              backgroundColor: 'var(--bg-secondary)',
+              border: '2px solid var(--border-color)',
               padding: '40px',
               maxWidth: '500px',
               width: '100%',
@@ -779,16 +795,16 @@ export default function Home({ projects, blogs, services, setView }) {
 
             {leadSuccess ? (
               <div style={{ textAlign: 'center', padding: '30px 0' }}>
-                <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '50px', height: '50px', border: '2px solid #000', borderRadius: '50%', marginBottom: '20px' }}>
+                <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '50px', height: '50px', border: '2px solid var(--border-color)', borderRadius: '50%', marginBottom: '20px' }}>
                   <Check size={24} />
                 </div>
                 <h3 style={{ fontSize: '20px', marginBottom: '10px' }}>INQUIRY SENT SUCCESSFULLY</h3>
-                <p className="mono-text" style={{ fontSize: '12px', color: '#888888' }}>Our structural lead engineers will contact you shortly.</p>
+                <p className="mono-text" style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Our structural lead engineers will contact you shortly.</p>
               </div>
             ) : (
               <form onSubmit={handleQuickLeadSubmit}>
-                <span className="mono-text" style={{ fontSize: '10px', color: '#888888' }}>DIRECT FILE REQUEST</span>
-                <h3 style={{ fontSize: '24px', fontWeight: '900', marginTop: '10px', marginBottom: '24px', borderBottom: '1px solid #000', paddingBottom: '12px' }}>
+                <span className="mono-text" style={{ fontSize: '10px', color: 'var(--text-muted)' }}>DIRECT FILE REQUEST</span>
+                <h3 style={{ fontSize: '24px', fontWeight: '900', marginTop: '10px', marginBottom: '24px', borderBottom: '1px solid var(--border-color)', paddingBottom: '12px' }}>
                   PROJECT REGISTRY
                 </h3>
 

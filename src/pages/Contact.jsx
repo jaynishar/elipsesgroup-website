@@ -43,11 +43,11 @@ export default function Contact() {
   };
 
   return (
-    <div className="animate-fade-in" style={{ backgroundColor: '#ffffff', minHeight: '100vh', padding: '80px 5vw 120px 5vw' }}>
+    <div className="animate-fade-in" style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh', padding: '80px 5vw 120px 5vw' }}>
       
       {/* Page Header */}
-      <section style={{ borderBottom: '1px solid #000000', paddingBottom: '40px', marginBottom: '60px' }}>
-        <span className="mono-text" style={{ color: '#888888', textTransform: 'uppercase', letterSpacing: '0.15em' }}>REGISTRY OFFICE</span>
+      <section style={{ borderBottom: '1px solid var(--border-light)', paddingBottom: '40px', marginBottom: '60px' }}>
+        <span className="mono-text" style={{ color: 'var(--accent-bronze)', textTransform: 'uppercase', letterSpacing: '0.15em', fontWeight: '700' }}>REGISTRY OFFICE</span>
         <h1 style={{ fontSize: 'calc(2.2rem + 3vw)', marginTop: '20px', fontWeight: '900' }}>
           CONTACT & CONNECT
         </h1>
@@ -59,62 +59,62 @@ export default function Contact() {
         {/* Contact Info and Stylized Map */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
           <div>
-            <p style={{ fontSize: '18px', lineHeight: '1.7', color: '#000000', fontWeight: '500', marginBottom: '20px' }}>
+            <p style={{ fontSize: '18px', lineHeight: '1.7', color: 'var(--text-primary)', fontWeight: '500', marginBottom: '20px' }}>
               Let's deploy high-performing spaces together. Get in touch with our engineering and design teams to schedule a workspace audit or request catalogs.
             </p>
           </div>
 
           {/* Details list */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '120px 1fr', borderBottom: '1px solid #eaeaea', paddingBottom: '15px' }}>
-              <span className="mono-text" style={{ color: '#888888', fontWeight: '700' }}>CALL US</span>
+            <div style={{ display: 'grid', gridTemplateColumns: '120px 1fr', borderBottom: '1px solid var(--border-light)', paddingBottom: '15px' }}>
+              <span className="mono-text" style={{ color: 'var(--text-muted)', fontWeight: '700' }}>CALL US</span>
               <span style={{ fontSize: '15px', fontWeight: '800' }}>+91 124 456 7890</span>
             </div>
             
-            <div style={{ display: 'grid', gridTemplateColumns: '120px 1fr', borderBottom: '1px solid #eaeaea', paddingBottom: '15px' }}>
-              <span className="mono-text" style={{ color: '#888888', fontWeight: '700' }}>EMAIL US</span>
+            <div style={{ display: 'grid', gridTemplateColumns: '120px 1fr', borderBottom: '1px solid var(--border-light)', paddingBottom: '15px' }}>
+              <span className="mono-text" style={{ color: 'var(--text-muted)', fontWeight: '700' }}>EMAIL US</span>
               <span style={{ fontSize: '15px', fontWeight: '800' }}>info@ellipsisgroup.in</span>
             </div>
             
-            <div style={{ display: 'grid', gridTemplateColumns: '120px 1fr', borderBottom: '1px solid #eaeaea', paddingBottom: '15px' }}>
-              <span className="mono-text" style={{ color: '#888888', fontWeight: '700' }}>ADDRESS</span>
+            <div style={{ display: 'grid', gridTemplateColumns: '120px 1fr', borderBottom: '1px solid var(--border-light)', paddingBottom: '15px' }}>
+              <span className="mono-text" style={{ color: 'var(--text-muted)', fontWeight: '700' }}>ADDRESS</span>
               <span style={{ fontSize: '14px', fontWeight: '800', lineHeight: '1.4' }}>DLF Phase 3, Gurugram, Haryana, India</span>
             </div>
           </div>
 
           {/* Stylized vector map blueprint (architecture studio vibe) */}
-          <div style={{ border: '1px solid #000000', height: '240px', backgroundColor: '#fafafa', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ border: '1px solid var(--border-light)', height: '240px', backgroundColor: 'var(--bg-secondary)', position: 'relative', overflow: 'hidden' }}>
             {/* Draw a grid matching layout maps */}
-            <svg width="100%" height="100%" style={{ opacity: 0.15 }}>
-              <line x1="0" y1="50" x2="400" y2="50" stroke="#000" strokeWidth="1" />
-              <line x1="0" y1="100" x2="400" y2="100" stroke="#000" strokeWidth="1" />
-              <line x1="0" y1="150" x2="400" y2="150" stroke="#000" strokeWidth="1" />
-              <line x1="0" y1="200" x2="400" y2="200" stroke="#000" strokeWidth="1" />
-              <line x1="100" y1="0" x2="100" y2="300" stroke="#000" strokeWidth="1" />
-              <line x1="200" y1="0" x2="200" y2="300" stroke="#000" strokeWidth="1" />
-              <line x1="300" y1="0" x2="300" y2="300" stroke="#000" strokeWidth="1" />
+            <svg width="100%" height="100%" style={{ opacity: 0.25 }}>
+              <line x1="0" y1="50" x2="400" y2="50" stroke="rgba(255, 255, 255, 0.2)" strokeWidth="1" />
+              <line x1="0" y1="100" x2="400" y2="100" stroke="rgba(255, 255, 255, 0.2)" strokeWidth="1" />
+              <line x1="0" y1="150" x2="400" y2="150" stroke="rgba(255, 255, 255, 0.2)" strokeWidth="1" />
+              <line x1="0" y1="200" x2="400" y2="200" stroke="rgba(255, 255, 255, 0.2)" strokeWidth="1" />
+              <line x1="100" y1="0" x2="100" y2="300" stroke="rgba(255, 255, 255, 0.2)" strokeWidth="1" />
+              <line x1="200" y1="0" x2="200" y2="300" stroke="rgba(255, 255, 255, 0.2)" strokeWidth="1" />
+              <line x1="300" y1="0" x2="300" y2="300" stroke="rgba(255, 255, 255, 0.2)" strokeWidth="1" />
               
               {/* Abstract roads/rivers representing maps */}
-              <path d="M-50,80 L180,80 L280,260 L450,260" fill="none" stroke="#000000" strokeWidth="6" />
-              <path d="M120,-20 L120,180 L80,320" fill="none" stroke="#000000" strokeWidth="4" />
-              <circle cx="180" cy="80" r="12" fill="none" stroke="#000" strokeWidth="2" />
-              <circle cx="180" cy="80" r="4" fill="#000" />
+              <path d="M-50,80 L180,80 L280,260 L450,260" fill="none" stroke="rgba(255, 255, 255, 0.3)" strokeWidth="6" />
+              <path d="M120,-20 L120,180 L80,320" fill="none" stroke="rgba(255, 255, 255, 0.3)" strokeWidth="4" />
+              <circle cx="180" cy="80" r="12" fill="none" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="2" />
+              <circle cx="180" cy="80" r="4" fill="rgba(255, 255, 255, 0.6)" />
             </svg>
-            <div style={{ position: 'absolute', bottom: '15px', left: '15px', backgroundColor: '#ffffff', border: '1px solid #000000', padding: '6px 12px' }}>
+            <div style={{ position: 'absolute', bottom: '15px', left: '15px', backgroundColor: 'var(--bg-primary)', border: '1px solid var(--border-light)', padding: '6px 12px' }}>
               <span className="mono-text" style={{ fontSize: '9px', fontWeight: '700' }}>HQ COORDINATES // GURUGRAM OFFICE</span>
             </div>
           </div>
         </div>
 
         {/* Contact Form Container */}
-        <div style={{ border: '1px solid #000000', padding: '40px', backgroundColor: '#ffffff' }}>
+        <div style={{ border: '1px solid var(--border-light)', padding: '40px', backgroundColor: 'var(--bg-secondary)' }}>
           {submitted ? (
             <div style={{ textAlign: 'center', padding: '40px 0' }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '50px', height: '50px', border: '2px solid #000', borderRadius: '50%', marginBottom: '20px' }}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '50px', height: '50px', border: '2px solid var(--border-light)', borderRadius: '50%', marginBottom: '20px' }}>
                 <Check size={24} />
               </div>
               <h2 style={{ fontSize: '24px', fontWeight: '950', marginBottom: '12px' }}>SUBMISSION SUCCESSFUL</h2>
-              <p style={{ color: '#555555', fontSize: '13px', lineHeight: '1.6', marginBottom: '30px' }}>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '13px', lineHeight: '1.6', marginBottom: '30px' }}>
                 Thank you. Your request was filed successfully in our database. Our project registry manager will contact you shortly.
               </p>
               <button onClick={() => setSubmitted(false)} className="interactive btn-secondary">
@@ -129,7 +129,7 @@ export default function Contact() {
                 <label className="form-label" style={{ display: 'block', marginBottom: '10px' }}>
                   Inquiry Registry
                 </label>
-                <div style={{ display: 'flex', gap: '2px', backgroundColor: '#000000', padding: '1px' }}>
+                <div style={{ display: 'flex', gap: '2px', backgroundColor: 'var(--border-light)', padding: '1px' }}>
                   {types.map(t => (
                     <button
                       key={t}
@@ -137,13 +137,13 @@ export default function Contact() {
                       onClick={() => handleTypeSelect(t)}
                       className="interactive mono-text"
                       style={{
-                        padding: '6px 12px',
+                        padding: '8px 12px',
                         fontSize: '9px',
                         fontWeight: '700',
                         cursor: 'pointer',
                         border: 'none',
-                        backgroundColor: formData.type === t ? '#ffffff' : '#000000',
-                        color: formData.type === t ? '#000000' : '#ffffff',
+                        backgroundColor: formData.type === t ? 'var(--text-primary)' : 'var(--bg-secondary)',
+                        color: formData.type === t ? 'var(--bg-primary)' : 'var(--text-primary)',
                         transition: 'var(--transition-fast)',
                         flexGrow: 1
                       }}

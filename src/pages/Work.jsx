@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { Filter, MapPin, Calendar, Briefcase, ArrowRight, X, Check } from 'lucide-react';
+import { Filter, MapPin, Calendar, Briefcase, ArrowRight, ArrowUpRight, X, Check } from 'lucide-react';
 import logosImg from '../assets/logos.png';
+import mepCeilingImg from '../assets/mep_ceiling.jpg';
+import modularFurnitureImg from '../assets/modular_furniture.jpg';
+import touchWoodMaterialsImg from '../assets/touch_wood_materials.jpg';
 
 export default function Work({ projects }) {
   const [activeFilter, setActiveFilter] = useState('ALL');
@@ -69,21 +72,32 @@ export default function Work({ projects }) {
     }
   };
 
+  const handleImageError = (e, fallbackType = 'furniture') => {
+    e.target.onerror = null; // Prevent infinite loop fallback
+    if (fallbackType === 'mep') {
+      e.target.src = mepCeilingImg;
+    } else if (fallbackType === 'design') {
+      e.target.src = touchWoodMaterialsImg;
+    } else {
+      e.target.src = modularFurnitureImg;
+    }
+  };
+
   return (
-    <div className="animate-fade-in" style={{ backgroundColor: '#ffffff', minHeight: '100vh', padding: '80px 5vw 120px 5vw' }}>
+    <div className="animate-fade-in" style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh', padding: '80px 5vw 120px 5vw' }}>
       
       {/* Page Header */}
-      <section style={{ borderBottom: '1px solid #000000', paddingBottom: '40px', marginBottom: '60px' }}>
+      <section style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '40px', marginBottom: '60px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '20px' }}>
           <div>
-            <span className="mono-text" style={{ color: '#888888', textTransform: 'uppercase', letterSpacing: '0.15em' }}>REGISTRY OF WORKS</span>
+            <span className="mono-text" style={{ color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.15em' }}>REGISTRY OF WORKS</span>
             <h1 style={{ fontSize: 'calc(2.2rem + 3vw)', marginTop: '20px', fontWeight: '900' }}>
               OUR PORTFOLIO
             </h1>
           </div>
 
           {/* Filters (Stark block buttons) */}
-          <div style={{ display: 'flex', gap: '2px', backgroundColor: '#000000', padding: '1px' }}>
+          <div style={{ display: 'flex', gap: '2px', backgroundColor: 'var(--border-color)', padding: '1px' }}>
             {filters.map(filter => (
               <button
                 key={filter}
@@ -97,8 +111,8 @@ export default function Work({ projects }) {
                   letterSpacing: '0.05em',
                   cursor: 'pointer',
                   border: 'none',
-                  backgroundColor: activeFilter === filter ? '#ffffff' : '#000000',
-                  color: activeFilter === filter ? '#000000' : '#ffffff',
+                  backgroundColor: activeFilter === filter ? 'var(--text-primary)' : 'var(--bg-secondary)',
+                  color: activeFilter === filter ? 'var(--bg-primary)' : 'var(--text-primary)',
                   transition: 'var(--transition-fast)'
                 }}
               >
@@ -112,7 +126,7 @@ export default function Work({ projects }) {
       {/* Projects Grid (Stark geometric layout) */}
       <section>
         {filteredProjects.length === 0 ? (
-          <div style={{ padding: '100px 0', textAlign: 'center', border: '1px dashed #000000' }}>
+          <div style={{ padding: '100px 0', textAlign: 'center', border: '1px dashed var(--border-color)' }}>
             <p className="mono-text" style={{ fontSize: '13px', fontWeight: '700' }}>NO PROJECTS RECORDED IN THIS CATEGORY.</p>
           </div>
         ) : (
@@ -124,50 +138,39 @@ export default function Work({ projects }) {
                 className="interactive"
                 style={{ 
                   cursor: 'pointer',
-                  border: '1px solid #000000',
+                  border: '1px solid var(--border-light)',
                   display: 'flex',
                   flexDirection: 'column',
-                  backgroundColor: '#ffffff'
+                  backgroundColor: 'var(--bg-secondary)'
                 }}
               >
                 {/* Image container */}
-                <div style={{ height: '280px', overflow: 'hidden', borderBottom: '1px solid #000000', position: 'relative' }} className="card-img-box">
+                <div style={{ width: '100%', aspectRatio: '16/10', overflow: 'hidden', borderBottom: '1px solid var(--border-light)', position: 'relative' }} className="card-img-box">
                   <img 
                     src={project.image} 
                     alt={project.title} 
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%)', transition: 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }}
+                    onError={(e) => handleImageError(e, project.brand.toUpperCase() === 'KEIYAN MEP' ? 'mep' : project.brand.toUpperCase() === 'TOUCH WOOD' ? 'design' : 'furniture')}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }}
                     onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
                     onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
                   />
-                  <div style={{ position: 'absolute', top: '15px', right: '15px', backgroundColor: '#ffffff', border: '1px solid #000000', padding: '4px 10px' }}>
+                  <div style={{ position: 'absolute', top: '15px', right: '15px', backgroundColor: 'var(--bg-primary)', border: '1px solid var(--border-light)', padding: '4px 10px' }}>
                     <span className="mono-text" style={{ fontSize: '9px', fontWeight: '700' }}>{project.brand}</span>
                   </div>
                 </div>
 
                 {/* Text Description */}
-                <div style={{ padding: '30px', display: 'flex', flexDirection: 'column', gap: '20px', flexGrow: 1, justifyContent: 'space-between' }}>
+                <div style={{ padding: '24px', flexGrow: 1, display: 'flex', flexDirection: 'column', justifySelf: 'stretch', justifyContent: 'space-between', gap: '20px' }}>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <div style={{ width: '22px', height: '22px', overflow: 'hidden' }}>
-                        {renderProjectIcon(project.brand)}
-                      </div>
-                      <span className="mono-text" style={{ fontSize: '11px', color: '#888888', textTransform: 'uppercase' }}>
-                        {project.category}
-                      </span>
-                    </div>
-
-                    <h3 style={{ fontSize: '22px', fontWeight: '900', color: '#000000' }}>
-                      {project.title}
-                    </h3>
+                    <span className="mono-text" style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
+                      {project.category}
+                    </span>
+                    <h3 style={{ fontSize: '18px', fontWeight: '900', color: 'var(--text-primary)', lineHeight: '1.2' }}>{project.title}</h3>
                   </div>
 
-                  <div style={{ borderTop: '1px dashed #e0e0e0', paddingTop: '15px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span className="mono-text" style={{ fontSize: '11px', color: '#555555' }}>
-                      {project.location}
-                    </span>
-                    <span className="mono-text" style={{ fontSize: '11px', fontWeight: '700' }}>
-                      [ READ FILE ]
-                    </span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid var(--border-light)', paddingTop: '15px' }}>
+                    <span className="mono-text" style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>VIEW CASE STUDY</span>
+                    <ArrowUpRight size={14} />
                   </div>
                 </div>
               </div>
@@ -186,14 +189,15 @@ export default function Work({ projects }) {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: 'rgba(255, 255, 255, 0.98)',
+            backgroundColor: 'var(--bg-primary)',
             zIndex: 2000,
             overflowY: 'auto',
-            padding: '100px 5vw'
+            padding: '100px 5vw',
+            color: 'var(--text-primary)'
           }}
         >
           {/* Header Controls */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #000000', paddingBottom: '20px', marginBottom: '40px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border-color)', paddingBottom: '20px', marginBottom: '40px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
               <div style={{ width: '28px', height: '28px', overflow: 'hidden' }}>
                 {renderProjectIcon(selectedProject.brand)}
@@ -206,7 +210,8 @@ export default function Work({ projects }) {
               className="interactive"
               style={{
                 backgroundColor: 'transparent',
-                border: '1px solid #000000',
+                border: '1px solid var(--border-color)',
+                color: 'var(--text-primary)',
                 padding: '10px 24px',
                 fontFamily: 'var(--font-display)',
                 fontWeight: '700',
@@ -221,59 +226,60 @@ export default function Work({ projects }) {
           {/* Grid Layout of details */}
           <div style={{ display: 'grid', gridTemplateColumns: '7fr 5fr', gap: '60px' }} className="detail-layout-grid">
             <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
-              <div style={{ border: '1px solid #000000', overflow: 'hidden' }}>
+              <div style={{ border: '1px solid var(--border-light)', overflow: 'hidden' }}>
                 <img 
                   src={selectedProject.image} 
                   alt={selectedProject.title} 
-                  style={{ width: '100%', objectFit: 'cover', display: 'block', maxHeight: '550px' }}
+                  onError={(e) => handleImageError(e, selectedProject.brand.toUpperCase() === 'KEIYAN MEP' ? 'mep' : selectedProject.brand.toUpperCase() === 'TOUCH WOOD' ? 'design' : 'furniture')}
+                  style={{ width: '100%', objectFit: 'cover', display: 'block', aspectRatio: '16/10' }}
                 />
               </div>
 
               {/* Extra dummy photos (simulated gallery representing detailed drawings) */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-                <div style={{ border: '1px solid #000000', height: '220px', overflow: 'hidden' }}>
-                  <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=400" alt="Technical blueprint sketch" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%)' }} />
+                <div style={{ border: '1px solid var(--border-light)', aspectRatio: '1.5', overflow: 'hidden' }}>
+                  <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=400" alt="Technical blueprint sketch" onError={(e) => handleImageError(e, 'mep')} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
-                <div style={{ border: '1px solid #000000', height: '220px', overflow: 'hidden' }}>
-                  <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ecc?auto=format&fit=crop&q=80&w=400" alt="Completed installation layout details" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%)' }} />
+                <div style={{ border: '1px solid var(--border-light)', aspectRatio: '1.5', overflow: 'hidden' }}>
+                  <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ecc?auto=format&fit=crop&q=80&w=400" alt="Completed installation layout details" onError={(e) => handleImageError(e, 'furniture')} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
               </div>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
               <div>
-                <span className="mono-text" style={{ color: '#888888', fontSize: '11px', textTransform: 'uppercase' }}>CASE STUDY // CLIENT FILE</span>
-                <h1 style={{ fontSize: '48px', fontWeight: '900', color: '#000000', marginTop: '10px' }}>
+                <span className="mono-text" style={{ color: 'var(--text-muted)', fontSize: '11px', textTransform: 'uppercase' }}>CASE STUDY // CLIENT FILE</span>
+                <h1 style={{ fontSize: '48px', fontWeight: '900', color: 'var(--text-primary)', marginTop: '10px' }}>
                   {selectedProject.title}
                 </h1>
               </div>
 
-              <p style={{ fontSize: '15px', color: '#333333', lineHeight: '1.7' }}>
+              <p style={{ fontSize: '15px', color: 'var(--text-secondary)', lineHeight: '1.7' }}>
                 {selectedProject.description}
               </p>
 
               {/* Technical Spec sheet */}
-              <div style={{ border: '1px solid #000000', padding: '24px' }}>
-                <h4 style={{ fontSize: '12px', fontWeight: '800', letterSpacing: '0.05em', borderBottom: '1px solid #000000', paddingBottom: '10px', marginBottom: '16px' }}>
+              <div style={{ border: '1px solid var(--border-color)', padding: '24px' }}>
+                <h4 style={{ fontSize: '12px', fontWeight: '800', letterSpacing: '0.05em', borderBottom: '1px solid var(--border-color)', paddingBottom: '10px', marginBottom: '16px' }}>
                   PROJECT SPECIFICATIONS
                 </h4>
                 
                 <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                   <tbody>
-                    <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
-                      <td className="mono-text" style={{ padding: '8px 0', color: '#888888' }}>CLIENT:</td>
+                    <tr style={{ borderBottom: '1px solid var(--border-light)' }}>
+                      <td className="mono-text" style={{ padding: '8px 0', color: 'var(--text-muted)' }}>CLIENT:</td>
                       <td className="mono-text" style={{ padding: '8px 0', textAlign: 'right', fontWeight: '700' }}>{selectedProject.client}</td>
                     </tr>
-                    <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
-                      <td className="mono-text" style={{ padding: '8px 0', color: '#888888' }}>LOCATION:</td>
+                    <tr style={{ borderBottom: '1px solid var(--border-light)' }}>
+                      <td className="mono-text" style={{ padding: '8px 0', color: 'var(--text-muted)' }}>LOCATION:</td>
                       <td className="mono-text" style={{ padding: '8px 0', textAlign: 'right', fontWeight: '700' }}>{selectedProject.location}</td>
                     </tr>
-                    <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
-                      <td className="mono-text" style={{ padding: '8px 0', color: '#888888' }}>YEAR:</td>
+                    <tr style={{ borderBottom: '1px solid var(--border-light)' }}>
+                      <td className="mono-text" style={{ padding: '8px 0', color: 'var(--text-muted)' }}>YEAR:</td>
                       <td className="mono-text" style={{ padding: '8px 0', textAlign: 'right', fontWeight: '700' }}>{selectedProject.year}</td>
                     </tr>
                     <tr>
-                      <td className="mono-text" style={{ padding: '8px 0', color: '#888888' }}>CONTRACT:</td>
+                      <td className="mono-text" style={{ padding: '8px 0', color: 'var(--text-muted)' }}>CONTRACT:</td>
                       <td className="mono-text" style={{ padding: '8px 0', textAlign: 'right', fontWeight: '700' }}>DESIGN-BUILD INTEGRATION</td>
                     </tr>
                   </tbody>
@@ -302,7 +308,6 @@ export default function Work({ projects }) {
               }
             }
             .interactive:hover .card-img-box img {
-              filter: grayscale(0%) !important;
               transform: scale(1.03);
             }
           `}</style>
@@ -330,8 +335,8 @@ export default function Work({ projects }) {
         >
           <div 
             style={{
-              backgroundColor: '#ffffff',
-              border: '2px solid #000000',
+              backgroundColor: 'var(--bg-secondary)',
+              border: '2px solid var(--border-color)',
               padding: '40px',
               maxWidth: '500px',
               width: '100%',
@@ -359,15 +364,15 @@ export default function Work({ projects }) {
                   <Check size={24} />
                 </div>
                 <h3 style={{ fontSize: '20px', marginBottom: '10px' }}>REQUEST FILED</h3>
-                <p className="mono-text" style={{ fontSize: '12px', color: '#888888' }}>Our logistics and project estimation desks will follow up.</p>
+                <p className="mono-text" style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Our logistics and project estimation desks will follow up.</p>
               </div>
             ) : (
               <form onSubmit={handleInquirySubmit}>
-                <span className="mono-text" style={{ fontSize: '10px', color: '#888888' }}>PROJECT: {selectedProject?.title.toUpperCase()}</span>
-                <h3 style={{ fontSize: '24px', fontWeight: '900', marginTop: '10px', marginBottom: '24px', borderBottom: '1px solid #000', paddingBottom: '12px' }}>
-                  FILE REQUEST
+                <span className="mono-text" style={{ fontSize: '10px', color: 'var(--text-muted)' }}>PROJECT ENQUIRY RECORD</span>
+                <h3 style={{ fontSize: '24px', fontWeight: '900', marginTop: '10px', marginBottom: '24px', borderBottom: '1px solid var(--border-light)', paddingBottom: '12px' }}>
+                  FILE DIRECT REQUEST
                 </h3>
-
+                <span className="mono-text" style={{ fontSize: '10px', color: 'var(--text-muted)' }}>PROJECT: {selectedProject?.title.toUpperCase()}</span>
                 <div className="form-group">
                   <label className="form-label">Full Name</label>
                   <input 

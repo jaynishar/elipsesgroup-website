@@ -23,8 +23,8 @@ export default function Navbar({ currentView, setView }) {
           left: 0,
           right: 0,
           height: '80px',
-          backgroundColor: '#ffffff',
-          borderBottom: '1px solid #000000',
+          backgroundColor: 'var(--bg-primary)',
+          borderBottom: '1px solid var(--border-color)',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
@@ -44,7 +44,7 @@ export default function Navbar({ currentView, setView }) {
             display: 'flex', 
             alignItems: 'center', 
             gap: '12px',
-            color: '#000000'
+            color: 'var(--accent-color)'
           }}
         >
           {/* Custom SVG Drawing "ELLIPSIS" in block geometric lines */}
@@ -76,7 +76,7 @@ export default function Navbar({ currentView, setView }) {
               fontWeight: '700',
               textTransform: 'uppercase', 
               letterSpacing: '0.05em', 
-              borderLeft: '1px solid #000', 
+              borderLeft: '1px solid var(--border-color)', 
               paddingLeft: '10px',
               display: 'inline-block',
               marginTop: '4px'
@@ -102,16 +102,16 @@ export default function Navbar({ currentView, setView }) {
                   fontWeight: '700',
                   textTransform: 'uppercase',
                   letterSpacing: '0.08em',
-                  color: currentView === item.view ? '#000000' : '#888888',
-                  borderBottom: currentView === item.view ? '2px solid #000000' : '2px solid transparent',
+                  color: currentView === item.view ? 'var(--accent-color)' : 'var(--text-muted)',
+                  borderBottom: currentView === item.view ? '2px solid var(--accent-color)' : '2px solid transparent',
                   paddingBottom: '4px',
                   transition: 'var(--transition-fast)'
                 }}
                 onMouseEnter={(e) => {
-                  if (currentView !== item.view) e.target.style.color = '#000000';
+                  if (currentView !== item.view) e.target.style.color = 'var(--accent-color)';
                 }}
                 onMouseLeave={(e) => {
-                  if (currentView !== item.view) e.target.style.color = '#888888';
+                  if (currentView !== item.view) e.target.style.color = 'var(--text-muted)';
                 }}
               >
                 {item.label}
@@ -148,7 +148,7 @@ export default function Navbar({ currentView, setView }) {
               justifyContent: 'center',
               width: '40px',
               height: '40px',
-              border: '1px solid #000000'
+              border: '1px solid var(--border-color)'
             }}
           >
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -164,8 +164,8 @@ export default function Navbar({ currentView, setView }) {
           bottom: 0,
           left: 0,
           width: '320px',
-          backgroundColor: '#ffffff',
-          borderRight: '1px solid #000000',
+          backgroundColor: 'var(--bg-primary)',
+          borderRight: '1px solid var(--border-color)',
           padding: '120px 40px 40px 40px',
           zIndex: 999,
           transform: menuOpen ? 'translateX(0)' : 'translateX(-100%)',
@@ -176,7 +176,7 @@ export default function Navbar({ currentView, setView }) {
         }}
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: '#888888', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Navigation</span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.15em' }}>Navigation</span>
           
           <nav style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             {navItems.map(item => (
@@ -194,12 +194,12 @@ export default function Navbar({ currentView, setView }) {
                   fontWeight: '900',
                   textTransform: 'uppercase',
                   letterSpacing: '-0.02em',
-                  color: currentView === item.view ? '#000000' : '#888888',
+                  color: currentView === item.view ? 'var(--accent-color)' : 'var(--text-muted)',
                   transition: 'var(--transition-fast)'
                 }}
-                onMouseEnter={(e) => e.target.style.color = '#000000'}
+                onMouseEnter={(e) => e.target.style.color = 'var(--accent-color)'}
                 onMouseLeave={(e) => {
-                  if (currentView !== item.view) e.target.style.color = '#888888';
+                  if (currentView !== item.view) e.target.style.color = 'var(--text-muted)';
                 }}
               >
                 {item.label}
@@ -222,7 +222,7 @@ export default function Navbar({ currentView, setView }) {
             <ArrowRight size={14} />
           </button>
           
-          <p style={{ fontSize: '11px', color: '#888888', fontFamily: 'var(--font-mono)' }}>
+          <p style={{ fontSize: '11px', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
             © {new Date().getFullYear()} Ellipsis Group.<br />
             DLF Gurugram, India.
           </p>
