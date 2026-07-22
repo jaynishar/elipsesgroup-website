@@ -122,7 +122,7 @@ export default function Navbar({ currentView, setView }) {
           {/* Portal button */}
           <button
             onClick={() => setView('admin')}
-            className="interactive btn-secondary"
+            className="interactive btn-secondary portal-crm-btn"
             style={{
               padding: '6px 14px',
               fontSize: '10px',

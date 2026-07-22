@@ -403,6 +403,49 @@ html, body {
   -webkit-overflow-scrolling: touch; /* Smooth inertial scrolling on iOS */
 }
 
+/* Project list layout for clean grid display (BIG.dk inspired) */
+.project-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 50px;
+  transition: var(--transition-smooth);
+}
+
+.project-row:hover {
+  background-color: rgba(255, 255, 255, 0.01);
+}
+
+.project-image-box {
+  width: 60%;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.project-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-row:hover .project-image-box img {
+  transform: scale(1.04);
+}
+
+.project-info-box {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 10px;
+}
+
 /* Prevent auto-zooming on input focus on iOS (Safari/Chrome/Firefox on Apple devices) */
 @media (max-width: 768px) {
   .form-input {
@@ -418,6 +461,69 @@ html, body {
   h2 {
     font-size: 1.8rem !important;
     line-height: 1.1 !important;
+  }
+
+  /* Projects List Mobile View - stack vertically, full-width images, neat margins */
+  .project-row {
+    flex-direction: column !important;
+    gap: 20px !important;
+    padding-bottom: 35px !important;
+  }
+  
+  .project-image-box {
+    width: 100% !important;
+    aspect-ratio: 16/10 !important;
+    height: auto !important;
+  }
+  
+  .project-info-box {
+    width: 100% !important;
+    padding-top: 0 !important;
+    gap: 15px !important;
+  }
+  
+  .project-info-box h3 {
+    font-size: calc(1.5rem + 1.2vw) !important;
+    margin-top: 4px !important;
+  }
+
+  .project-info-box p {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+  }
+  
+  /* Hero Image Mobile View - adjust aspect ratio so it doesn't squish */
+  .hero-image-container {
+    aspect-ratio: 16/10 !important;
+  }
+  
+  /* Horizontal scrollable filters on mobile to prevent wrapping/squeezing */
+  .brand-filter-scroll-wrapper {
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    display: flex !important;
+    max-width: 100% !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  .brand-filter-scroll-wrapper::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+  
+  .brand-filter-scroll-wrapper button {
+    flex-shrink: 0 !important;
+  }
+  
+  /* Hide Navbar CRM Portal text/button in header on mobile to save space */
+  .portal-crm-btn {
+    display: none !important;
+  }
+
+  /* Safe grid fallback on mobile for the Work page template grid */
+  .project-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
   }
 }
 

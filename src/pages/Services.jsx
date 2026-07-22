@@ -144,7 +144,7 @@ export default function Services({ services, setView }) {
       </section>
 
       {/* Tabs Menu */}
-      <section style={{ display: 'flex', gap: '2px', backgroundColor: 'var(--border-light)', padding: '1px', marginBottom: '60px', alignSelf: 'flex-start', maxWidth: 'fit-content' }}>
+      <section className="brand-filter-scroll-wrapper" style={{ display: 'flex', gap: '2px', backgroundColor: 'var(--border-light)', padding: '1px', marginBottom: '60px', alignSelf: 'flex-start', maxWidth: '100%' }}>
         {services.map(s => (
           <button
             key={s.id}

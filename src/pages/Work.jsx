@@ -119,7 +119,7 @@ export default function Work({ projects }) {
           </div>
 
           {/* Filters (Stark block buttons) */}
-          <div style={{ display: 'flex', gap: '2px', backgroundColor: 'var(--border-color)', padding: '1px' }}>
+          <div className="brand-filter-scroll-wrapper" style={{ display: 'flex', gap: '2px', backgroundColor: 'var(--border-color)', padding: '1px' }}>
             {filters.map(filter => (
               <button
                 key={filter}
@@ -260,10 +260,10 @@ export default function Work({ projects }) {
               {/* Extra dummy photos (simulated gallery representing detailed drawings) */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                 <div style={{ border: '1px solid var(--border-light)', aspectRatio: '1.5', overflow: 'hidden' }}>
-                  <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=400" alt="Technical blueprint sketch" onError={(e) => handleImageError(e, 'mep')} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=400" alt="Technical blueprint sketch" onError={(e) => handleImageError(e, 'mep')} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
                 </div>
                 <div style={{ border: '1px solid var(--border-light)', aspectRatio: '1.5', overflow: 'hidden' }}>
-                  <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ecc?auto=format&fit=crop&q=80&w=400" alt="Completed installation layout details" onError={(e) => handleImageError(e, 'furniture')} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ecc?auto=format&fit=crop&q=80&w=400" alt="Completed installation layout details" onError={(e) => handleImageError(e, 'furniture')} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
                 </div>
               </div>
             </div>

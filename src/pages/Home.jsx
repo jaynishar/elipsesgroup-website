@@ -360,6 +360,7 @@ export default function Home({ projects, blogs, services, setView }) {
 
         {/* Large visual entry graphic placeholder that auto-zooms */}
         <div 
+          className="hero-image-container"
           style={{ 
             width: '100%', 
             aspectRatio: '21/9', 
@@ -427,7 +428,7 @@ export default function Home({ projects, blogs, services, setView }) {
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '15px' }}>
           {/* Main Brand filters */}
-          <div style={{ display: 'flex', gap: '2px', backgroundColor: 'var(--border-light)', padding: '1px' }}>
+          <div className="brand-filter-scroll-wrapper" style={{ display: 'flex', gap: '2px', backgroundColor: 'var(--border-light)', padding: '1px' }}>
             {['ALL', 'KEIYAN MEP', 'FRONTIER FURNITURE', 'TOUCH WOOD'].map(brand => (
               <button
                 key={brand}
@@ -563,6 +564,7 @@ export default function Home({ projects, blogs, services, setView }) {
                       <img 
                         src={sub.image} 
                         alt={sub.title} 
+                        loading="lazy"
                         onError={(e) => handleImageError(e, activeBrand === 'KEIYAN MEP' ? 'mep' : activeBrand === 'TOUCH WOOD' ? 'design' : 'furniture')}
                         style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }} 
                         onMouseEnter={(e) => e.target.style.transform = 'scale(1.04)'} 
@@ -608,37 +610,15 @@ export default function Home({ projects, blogs, services, setView }) {
                 }}
                 onMouseEnter={(e) => handleProjectHover(e, true)}
                 onMouseLeave={(e) => handleProjectHover(e, false)}
-                className="interactive animate-fade-in-up"
-                style={{
-                  display: 'flex',
-                  alignItems: 'flex-start',
-                  gap: '40px',
-                  cursor: 'pointer',
-                  borderBottom: '1px solid var(--border-light)',
-                  paddingBottom: '50px'
-                }}
+                className="project-row interactive animate-fade-in-up"
               >
                 {/* Project Image Frame */}
-                <div 
-                  style={{
-                    width: '60%',
-                    aspectRatio: '16/10',
-                    overflow: 'hidden',
-                    border: '1px solid var(--border-light)',
-                    position: 'relative'
-                  }}
-                  className="project-image-box"
-                >
+                <div className="project-image-box">
                   <img 
                     src={proj.image} 
                     alt={proj.title}
+                    loading="lazy"
                     onError={(e) => handleImageError(e, proj.brand.toUpperCase() === 'KEIYAN MEP' ? 'mep' : proj.brand.toUpperCase() === 'TOUCH WOOD' ? 'design' : 'furniture')}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1)'
-                    }}
                   />
                   <div style={{ position: 'absolute', top: '15px', right: '15px', backgroundColor: 'var(--bg-primary)', border: '1px solid var(--border-light)', padding: '4px 10px' }}>
                     <span className="mono-text" style={{ fontSize: '10px', fontWeight: '700' }}>{proj.brand}</span>
@@ -646,7 +626,7 @@ export default function Home({ projects, blogs, services, setView }) {
                 </div>
 
                 {/* Project Info Block */}
-                <div style={{ width: '40%', display: 'flex', flexDirection: 'column', gap: '20px', paddingTop: '10px' }} className="project-info-box">
+                <div className="project-info-box">
                   {/* Brand specific visual Icon */}
                   <div style={{ width: '36px', height: '36px', overflow: 'hidden' }}>
                     {renderProjectIcon(proj.brand)}
@@ -743,10 +723,10 @@ export default function Home({ projects, blogs, services, setView }) {
               {/* Extra dummy photos (simulated gallery representing detailed drawings) */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                 <div style={{ border: '1px solid var(--border-light)', aspectRatio: '1.5', overflow: 'hidden' }}>
-                  <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=400" alt="Technical blueprint sketch" onError={(e) => handleImageError(e, 'mep')} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=400" alt="Technical blueprint sketch" onError={(e) => handleImageError(e, 'mep')} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
                 </div>
                 <div style={{ border: '1px solid var(--border-light)', aspectRatio: '1.5', overflow: 'hidden' }}>
-                  <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ecc?auto=format&fit=crop&q=80&w=400" alt="Completed installation layout details" onError={(e) => handleImageError(e, 'furniture')} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ecc?auto=format&fit=crop&q=80&w=400" alt="Completed installation layout details" onError={(e) => handleImageError(e, 'furniture')} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
                 </div>
               </div>
             </div>
@@ -808,31 +788,6 @@ export default function Home({ projects, blogs, services, setView }) {
               </div>
             </div>
           </div>
-
-          <style>{`
-            @media (max-width: 900px) {
-              .detail-layout-grid {
-                grid-template-columns: 1fr !important;
-                gap: 30px !important;
-              }
-            }
-            .project-image-box:hover img {
-              transform: scale(1.04);
-            }
-            @media (max-width: 768px) {
-              .project-image-box {
-                width: 100% !important;
-                height: 280px !important;
-              }
-              .project-info-box {
-                width: 100% !important;
-              }
-              .animate-fade-in-up {
-                flex-direction: column !important;
-                gap: 20px !important;
-              }
-            }
-          `}</style>
         </div>
       )}
 
