@@ -163,7 +163,7 @@ export default function Navbar({ currentView, setView }) {
           top: 0,
           bottom: 0,
           left: 0,
-          width: '320px',
+          width: 'min(320px, 85vw)',
           backgroundColor: 'var(--bg-primary)',
           borderRight: '1px solid var(--border-color)',
           padding: '120px 40px 40px 40px',

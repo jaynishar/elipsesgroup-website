@@ -1,9 +1,52 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, MapPin, Calendar, Briefcase, Eye, Shield, HardHat, Info, Check } from 'lucide-react';
+import { ArrowRight, MapPin, Calendar, Briefcase, Eye, Shield, HardHat, Info, Check, X } from 'lucide-react';
 import logosImg from '../assets/logos.png';
 import mepCeilingImg from '../assets/mep_ceiling.jpg';
 import modularFurnitureImg from '../assets/modular_furniture.jpg';
 import touchWoodMaterialsImg from '../assets/touch_wood_materials.jpg';
+
+// Minimalist High-Performance CountUp animation component using requestAnimationFrame & IntersectionObserver
+const CountUp = ({ to, duration = 1200, suffix = "" }) => {
+  const [count, setCount] = useState(0);
+  const elementRef = useRef(null);
+  const [hasStarted, setHasStarted] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setHasStarted(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!hasStarted) return;
+    let start = null;
+    const step = (timestamp) => {
+      if (!start) start = timestamp;
+      const progress = timestamp - start;
+      const progressRatio = Math.min(progress / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progressRatio, 3); // easeOutCubic
+      setCount(Math.floor(easedProgress * to));
+      if (progress < duration) {
+        window.requestAnimationFrame(step);
+      } else {
+        setCount(to);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }, [hasStarted, to, duration]);
+
+  return <span ref={elementRef}>{count}{suffix}</span>;
+};
 
 export default function Home({ projects, blogs, services, setView }) {
   const [activeBrand, setActiveBrand] = useState('ALL'); // ALL | KEIYAN MEP | FRONTIER FURNITURE | TOUCH WOOD
@@ -239,6 +282,28 @@ export default function Home({ projects, blogs, services, setView }) {
           type: 'Lead Generation'
         })
       });
+
+      // GTM & Google Analytics Conversion Tracking
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: 'generate_lead',
+          form_type: 'Quick Estimation Form',
+          lead_brand: leadForm.brand,
+          lead_source: 'website_quick_form',
+          value: 5000,
+          currency: 'INR'
+        });
+      }
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {
+          currency: 'INR',
+          value: 5000,
+          form_type: 'Quick Estimation Form',
+          lead_brand: leadForm.brand,
+          lead_source: 'website_quick_form'
+        });
+      }
+
       setLeadSuccess(true);
       setTimeout(() => {
         setLeadSuccess(false);
@@ -321,6 +386,27 @@ export default function Home({ projects, blogs, services, setView }) {
           <div style={{ position: 'absolute', bottom: '20px', left: '20px', backgroundColor: 'var(--bg-primary)', border: '1px solid var(--border-light)', padding: '10px 20px' }}>
             <span className="mono-text" style={{ fontSize: '11px', fontWeight: '700' }}>00 // CONTINUOUS WORKSPACE INTEGRATION</span>
           </div>
+        </div>
+      </section>
+
+      {/* Dynamic Count-Up Statistics Panel (minimalist grid layout) */}
+      <section style={{ padding: '45px 5vw', borderBottom: '1px solid var(--border-light)', backgroundColor: 'var(--bg-secondary)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '30px' }} className="stats-grid">
+          {[
+            { to: 30, suffix: "+", label: "YEARS COMBINED ARCHITECTURAL EXPERIENCE" },
+            { to: 180, suffix: "K+", label: "SQUARE FEET DESIGNED & INSTALLED" },
+            { to: 3, suffix: "", label: "OPERATIONAL DIVISIONS (MEP, FURNITURE, DESIGN)" },
+            { to: 500, suffix: "+", label: "MODULAR WORKSTATIONS MANUFACTURED" }
+          ].map((stat, i) => (
+            <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: '8px', borderLeft: '1px solid var(--border-color)', paddingLeft: '20px' }}>
+              <span style={{ fontSize: 'calc(1.8rem + 1.2vw)', fontWeight: '900', fontFamily: 'var(--font-display)', color: 'var(--accent-bronze)', lineHeight: '1' }}>
+                <CountUp to={stat.to} suffix={stat.suffix} />
+              </span>
+              <span className="mono-text" style={{ fontSize: '9px', fontWeight: '700', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>
+                {stat.label}
+              </span>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -607,7 +693,9 @@ export default function Home({ projects, blogs, services, setView }) {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: 'rgba(255, 255, 255, 0.98)',
+            backgroundColor: 'rgba(30, 31, 33, 0.98)',
+            backdropFilter: 'blur(8px)',
+            color: 'var(--text-primary)',
             zIndex: 2000,
             overflowY: 'auto',
             padding: '100px 5vw'

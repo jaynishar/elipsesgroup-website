@@ -32,6 +32,28 @@ export default function Contact() {
     try {
       const apiURL = window.location.hostname === 'localhost' ? 'http://localhost:5000' : '';
       await axios.post(`${apiURL}/api/inquiries`, formData);
+      
+      // GTM & Google Analytics Conversion Tracking
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: 'generate_lead',
+          form_type: 'Main Contact Form',
+          lead_inquiry_type: formData.type,
+          lead_source: 'website_contact_form',
+          value: 5000,
+          currency: 'INR'
+        });
+      }
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {
+          currency: 'INR',
+          value: 5000,
+          form_type: 'Main Contact Form',
+          lead_inquiry_type: formData.type,
+          lead_source: 'website_contact_form'
+        });
+      }
+
       setSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '', type: 'General Inquiry' });
     } catch (err) {

@@ -61,6 +61,28 @@ export default function Work({ projects }) {
           type: 'Project Inquiry'
         })
       });
+      
+      // GTM & Google Analytics Conversion Tracking
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: 'generate_lead',
+          form_type: 'Project Case Study Form',
+          lead_project_title: selectedProject?.title,
+          lead_source: 'website_project_form',
+          value: 5000,
+          currency: 'INR'
+        });
+      }
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {
+          currency: 'INR',
+          value: 5000,
+          form_type: 'Project Case Study Form',
+          lead_project_title: selectedProject?.title,
+          lead_source: 'website_project_form'
+        });
+      }
+
       setSuccess(true);
       setTimeout(() => {
         setSuccess(false);
